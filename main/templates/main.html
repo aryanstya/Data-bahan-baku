@@ -1,24 +1,43 @@
 
+{% extends 'base.html' %}
 
-  <h1>Assignment 2 PBP</h1>
+{% block content %}
+    <h1>Data Bahan Baku</h1>
 
-  <h5>Name: </h5>
-  <p>Aryan Primasatya Putra Hidayat</p>
+    <h5>Name:</h5>
+    <p>{{name}}</p>
 
-  <h5>Student ID: </h5>
-  <p>2206081181</p>
+    <h5>Class:</h5>
+    <p>{{class}}</p>
 
-  <table>
+<table>
     <tr>
-      <th>Name</th>
-      <th>Amount</th>
-      <th>Description</th>
+        <th>Name</th>
+        <th>     </th>
+        <th>Amount</th>
+        <th>       </th>
+        <th>Description</th>
+    </tr>
 
-    </tr>
-    {% comment %} Add the data below this line {% endcomment %}
-    <tr>
-        <th>{{dataBahanBaku.name}}</th>
-        <th>{{dataBahanBaku.amount}}</th>
-        <th>{{dataBahanBaku.description}}</th>
-    </tr>
-  </table>
+    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+    {% for product in products %}
+        <tr>
+            <td>{{product.name}}</td>
+            <th>     </th>
+            <td>{{product.amount}}</td>
+            <th>     </th>
+            <td>{{product.description}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br />
+
+<a href="{% url 'main:create_product' %}">
+    <button>
+        Add New Product
+    </button>
+</a>
+
+{% endblock content %}
