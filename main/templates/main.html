@@ -30,7 +30,10 @@
             <td>{{product.description}}</td>
         </tr>
     {% endfor %}
+    
 </table>
+
+<h5>Sesi terakhir login: {{ last_login }}</h5>
 
 <br />
 
@@ -39,5 +42,14 @@
         Add New Product
     </button>
 </a>
+
+
+<a href="{% url 'main:logout' %}">
+    <button>
+        Logout
+    </button>
+</a>
+
+
 
 {% endblock content %}
