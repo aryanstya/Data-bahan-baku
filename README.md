@@ -48,6 +48,51 @@ description = deskripsi bahan
    |     ke client           |
    +-------------------------+
 
+   
+4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+   Untuk mengimplementasikan checklist di atas, berikut adalah langkah-langkahnya secara singkat:
+
+      1. **Membuat Proyek Django Baru:**
+         - Buka terminal dan navigasikan ke direktori tempat Anda ingin membuat proyek Django.
+         - Jalankan perintah `django-admin startproject nama_proyek` untuk membuat proyek baru. Gantilah "nama_proyek" dengan nama yang Anda inginkan.
+      
+      2. **Membuat Aplikasi "main":**
+         - Dalam direktori proyek, jalankan perintah `python manage.py startapp main` untuk membuat aplikasi baru dengan nama "main".
+      
+      3. **Melakukan Routing pada Proyek:**
+         - Di dalam file `urls.py` proyek (nama_proyek/urls.py), tambahkan routing untuk aplikasi "main" dengan menggunakan `include`.
+      
+      4. **Membuat Model "Item":**
+         - Di dalam aplikasi "main" (main/models.py), definisikan model "Item" dengan atribut yang sesuai seperti "name," "amount," dan "description" dengan tipe data yang sesuai.
+      
+      5. **Membuat Fungsi pada views.py:**
+         - Di dalam aplikasi "main" (main/views.py), buat sebuah fungsi view yang mengembalikan data yang ingin ditampilkan dalam template HTML. Contohnya:
+      
+         ```python
+         from django.shortcuts import render
+      
+         def my_view(request):
+             nama_aplikasi = "Aplikasi Saya"
+             nama_kelas = "Kelas Saya"
+             return render(request, 'template.html', {'nama_aplikasi': nama_aplikasi, 'nama_kelas': nama_kelas})
+         ```
+      
+      6. **Membuat Template HTML:**
+         - Buat template HTML (misalnya, "template.html") yang akan digunakan untuk menampilkan data dari fungsi view. Anda dapat menggunakan variabel yang dikirim dari view dalam template ini.
+      
+      7. **Membuat Routing pada urls.py Aplikasi "main":**
+         - Di dalam aplikasi "main" (main/urls.py), buat routing untuk mengaitkan URL dengan fungsi view yang telah Anda buat.
+      
+      8. **Melakukan Deployment ke Adaptable:**
+         - Untuk melakukan deployment, Anda perlu memilih platform hosting atau server. Setelah itu, ikuti panduan hosting Django atau platform yang Anda pilih untuk mengunggah proyek Anda dan mengatur konfigurasi yang diperlukan.
+      
+      9. **Mengakses Aplikasi:**
+         - Setelah berhasil dideploy, aplikasi Anda dapat diakses melalui internet menggunakan alamat yang diberikan oleh platform hosting atau server yang Anda pilih.
+      
+
+
+
 
 ## Pertanyaan Tugas 3
 
@@ -86,6 +131,152 @@ HTML (Hypertext Markup Language): Digunakan untuk menggambarkan struktur dan tam
    ![Foto JSON](https://github.com/aryanstya/Data-bahan-baku/assets/124659813/4e9a369c-d987-444b-b27c-909b9e8b383f)
 
    ![Foto JSON With ID](https://github.com/aryanstya/Data-bahan-baku/assets/124659813/a65440c8-b943-4b80-9318-b04c2b4afa12)
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+**Langkah 1: Membuat Input Form**
+
+   Buka proyek Django Anda dan navigasikan ke aplikasi yang sudah ada.
+   
+   Buat model Django yang akan digunakan untuk menyimpan objek yang akan ditambahkan. Misalnya, jika Anda ingin menyimpan daftar "Task", buat model Task.
+   
+   Buat sebuah form Django yang berfungsi untuk menambahkan objek ke dalam model tersebut. Anda dapat menggunakan ModelForm untuk mempermudah pembuatan form berdasarkan model.
+   
+   Buat tampilan (view) yang akan menampilkan form tersebut sebagai halaman HTML.
+   
+   Buat template HTML untuk tampilan form dan terapkan form tersebut di dalamnya.
+
+**Langkah 2: Menambahkan 5 Fungsi Views**
+
+   Buat 5 tampilan (views) berbeda, masing-masing untuk melihat objek yang telah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.
+   
+   Tambahkan kode dalam setiap tampilan untuk mengambil objek-objek dari model yang sesuai, kemudian menghasilkan output dalam format yang diminta (HTML, XML, JSON) berdasarkan jenis tampilan.
+   
+   Untuk tampilan XML dan JSON by ID, pastikan tampilan tersebut menerima parameter ID untuk menentukan objek yang ingin dilihat.
+
+**Langkah 3: Membuat Routing URL**
+
+   Buka file urls.py dalam aplikasi Django Anda.
+   
+   Tambahkan path atau rute URL untuk setiap tampilan yang Anda buat pada langkah 2. Anda harus menentukan pola URL dan menentukan fungsi tampilan yang akan dipanggil.
+   
+   Langkah 4: Menjawab Pertanyaan di README.md
+   
+   Buka file README.md dalam folder root proyek Anda.
+   
+   Tambahkan bagian yang menjawab pertanyaan-pertanyaan yang tercantum dalam checklist. Anda dapat menggunakan bahasa Markdown untuk mengatur dan menyajikan jawaban Anda secara rapi.
+
+
+   ## Pertanyaan Tugas 4
+
+1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
+
+      **Django UserCreationForm** adalah salah satu dari banyak formulir bawaan yang disediakan oleh Django, sebuah framework pengembangan web berbasis Python. Formulir ini secara khusus digunakan untuk memudahkan proses pembuatan akun pengguna dalam aplikasi web Django. UserCreationForm mengumpulkan informasi yang diperlukan untuk membuat akun pengguna baru, seperti nama pengguna (username), kata sandi (password), dan, jika diinginkan, informasi tambahan seperti alamat email.
+      
+      **Kelebihan Django UserCreationForm:**
+      
+      1. **Kemudahan Penggunaan:** UserCreationForm adalah bagian integral dari Django's authentication system. Ini membuatnya sangat mudah untuk digunakan dan diintegrasikan dalam aplikasi Django Anda.
+      
+      2. **Keamanan Bawaan:** Formulir ini secara otomatis mengatasi banyak masalah keamanan yang terkait dengan pendaftaran pengguna, termasuk enkripsi kata sandi menggunakan algoritma hash yang aman.
+      
+      3. **Customizable:** Meskipun sederhana, UserCreationForm tetap dapat disesuaikan sesuai kebutuhan. Anda dapat menambahkan atau mengubah bidang-bidang yang ada untuk mengakomodasi informasi       tambahan yang ingin Anda kumpulkan.
+      
+      **Kekurangan Django UserCreationForm:**
+      
+      1. **Keterbatasan Kustomisasi:** Meskipun dapat disesuaikan, UserCreationForm biasanya cocok untuk kasus penggunaan pendaftaran dasar. Jika Anda memerlukan alur pendaftaran yang lebih kompleks, seperti verifikasi email atau pendaftaran dengan media sosial, Anda mungkin perlu menulis formulir pendaftaran kustom Anda sendiri.
+      
+      2. **Tampilan Bawaan yang Sederhana:** Tampilan default dari UserCreationForm cenderung sederhana. Ini berarti Anda mungkin perlu menghabiskan waktu tambahan untuk menyesuaikan tampilan formulir agar sesuai dengan desain dan gaya visual aplikasi Anda.
+      
+      3. **Memerlukan Penggunaan Django:** UserCreationForm hanya relevan jika Anda menggunakan Django sebagai framework pengembangan web Anda. Ini mungkin menjadi kendala jika Anda mempertimbangkan untuk menggunakan platform lain atau membangun sesuatu yang tidak berbasis Django. 
+
+
+  
+2. Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+
+
+autentikasi dan otorisasi adalah dua konsep yang sangat penting untuk mengelola akses dan keamanan dalam aplikasi web. Mereka memiliki perbedaan yang signifikan:
+
+**Autentikasi (Authentication):**
+
+   Autentikasi adalah proses memverifikasi identitas pengguna, yaitu memastikan bahwa pengguna adalah orang yang mereka klaim menjadi. Ini adalah tahap awal yang harus dilewati oleh pengguna saat mereka mencoba mengakses aplikasi Anda.
+   
+   Dalam konteks Django, autentikasi berarti mengidentifikasi pengguna berdasarkan kredensial yang mereka berikan, seperti nama pengguna (username) dan kata sandi (password). Django memiliki built-in fitur autentikasi yang sangat kuat yang dapat mengelola proses ini dengan aman.
+   
+   Setelah autentikasi berhasil, pengguna akan diberikan akses ke akun mereka atau ke fitur-fitur tertentu yang memerlukan otentikasi.
+   
+   Contoh: Saat seorang pengguna memasukkan nama pengguna dan kata sandi yang benar, mereka dianggap terautentikasi dan dapat mengakses akun pribadi mereka.
+
+**Otorisasi (Authorization):**
+
+   Otorisasi adalah proses yang terjadi setelah autentikasi. Ini mengatur apa yang pengguna yang telah terautentikasi dapat dan tidak dapat lakukan dalam aplikasi Anda. Otorisasi berkaitan dengan pengelolaan izin dan hak akses pengguna.
+   
+   Dalam konteks Django, otorisasi melibatkan pengaturan hak akses untuk pengguna, biasanya dengan menggunakan grup dan izin. Ini menentukan apakah pengguna diizinkan mengakses fitur-fitur tertentu, data, atau tindakan tertentu dalam aplikasi.
+   
+   Otorisasi memastikan bahwa pengguna hanya dapat mengakses bagian-bagian dari aplikasi yang sesuai dengan peran atau izin mereka, dan mencegah akses yang tidak sah ke data atau fungsi penting.
+   
+   Contoh: Seorang pengguna yang terautentikasi tetapi hanya memiliki izin "pengguna reguler" tidak akan dapat mengakses halaman admin atau mengedit data yang hanya diizinkan untuk admin.
+
+**Mengapa keduanya penting?**
+
+   **Autentikasi** penting karena memastikan bahwa hanya pengguna yang sah yang dapat mengakses sistem Anda. Ini melindungi privasi dan keamanan data pengguna.
+   
+   **Otorisasi** penting karena mengendalikan apa yang pengguna yang terautentikasi dapat lakukan dalam aplikasi Anda. Ini memungkinkan Anda untuk menjaga kontrol dan keamanan tingkat granular terhadap berbagai fitur dan data.
+
+
+
+3. Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
+   
+   **Cookies dalam konteks aplikasi web** adalah file kecil yang disimpan di sisi klien (browser) dan digunakan untuk menyimpan informasi terkait sesi atau pengguna. Mereka dapat digunakan untuk mengenali pengguna, menyimpan preferensi, atau mengelola data sesi.
+   
+   **Django menggunakan cookies untuk mengelola data sesi pengguna** dengan cara menyimpan ID sesi pengguna dalam cookie. Saat pengguna mengakses situs web Django, server menghasilkan ID sesi unik untuk mereka, yang kemudian disimpan dalam cookie di browser pengguna. ID sesi ini digunakan untuk mengidentifikasi pengguna dan mengaitkannya dengan data sesi di server, seperti keranjang belanja atau preferensi pengguna. Ini memungkinkan pengguna untuk tetap masuk dan menyimpan data mereka saat mereka berinteraksi dengan situs web Anda.
+
+
+4. Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+
+      Penggunaan cookies tidak selalu aman secara default dalam pengembangan web, dan ada risiko potensial yang harus diwaspadai:
+
+   **Keamanan Data:** Data yang disimpan dalam cookies dapat terlihat oleh pengguna jika tidak dienkripsi dengan benar. Informasi sensitif seperti kata sandi atau data kartu kredit tidak boleh disimpan dalam cookies.
+   
+   **Serangan Cross-Site Scripting (XSS):** Jika aplikasi Anda rentan terhadap serangan XSS, penyerang dapat mencuri cookies pengguna, yang dapat digunakan untuk mengakses akun pengguna.
+   
+   **Serangan Cross-Site Request Forgery (CSRF):** Cookies yang digunakan untuk autentikasi pengguna harus dilindungi dari serangan CSRF, yang dapat mengakibatkan tindakan tidak sah di akun pengguna.
+   
+   **Cookie Theft:** Jika pengguna menggunakan komputer bersama atau tidak mengamankan perangkat mereka dengan baik, cookies mereka dapat dicuri oleh orang lain yang memiliki akses ke perangkat tersebut.
+   
+   Untuk mengamankan penggunaan cookies, Anda harus mengikuti praktik terbaik dalam mengenkripsi data sensitif, melindungi aplikasi Anda dari serangan XSS dan CSRF, serta memeriksa pengaturan keamanan peramban untuk mengontrol bagaimana cookies digunakan.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+      Berikut adalah langkah-langkah implementasi checklist yang Anda sebutkan:
+
+      **Langkah 1: Mengimplementasikan Fungsi Registrasi, Login, dan Logout**
+      
+      1. Buat tampilan (view) untuk registrasi pengguna yang menggunakan Django UserCreationForm atau formulir kustom jika diperlukan.
+      2. Buat tampilan (view) untuk login menggunakan Django built-in authentication views atau tampilan kustom.
+      3. Buat tampilan (view) untuk logout menggunakan Django built-in `logout` view.
+      4. Tentukan rute (URL) untuk setiap tampilan registrasi, login, dan logout.
+      5. Buat template HTML yang sesuai untuk masing-masing tampilan tersebut.
+      
+      **Langkah 2: Membuat Dua Akun Pengguna dengan Dummy Data**
+      
+      1. Buat skrip manajemen Django (misalnya, dengan menggunakan perintah `python manage.py shell`) untuk membuat dua akun pengguna baru.
+      2. Gunakan model User yang telah ada atau buat model kustom yang terhubung dengan User.
+      3. Simpan tiga data dummy untuk setiap akun, sesuai dengan struktur model yang telah Anda tentukan.
+      4. Simpan data-data ini dalam database.
+      
+      **Langkah 3: Menghubungkan Model Item dengan User**
+      
+      1. Pastikan model `Item` memiliki hubungan ForeignKey ke model `User`. Ini akan mengaitkan setiap item dengan pengguna yang memilikinya.
+      2. Lakukan migrasi database untuk memastikan struktur database mencerminkan perubahan ini dengan menjalankan `python manage.py makemigrations` dan `python manage.py migrate`.
+      
+      **Langkah 4: Menampilkan Detail Informasi Pengguna yang Sedang Logged In dan Menggunakan Cookies**
+      
+      1. Di tampilan utama aplikasi, terapkan kondisi yang memeriksa apakah pengguna telah masuk (logged in) atau belum. Anda dapat melakukannya dengan menggunakan `request.user.is_authenticated`.
+      2. Jika pengguna telah masuk, tampilkan informasi pengguna seperti username dan last login menggunakan `request.user.username` dan `request.user.last_login`.
+      3. Gunakan cookies untuk menyimpan informasi terkait sesi, seperti last login time. Anda dapat menggunakan library Django's `django.contrib.sessions` untuk mengelola cookies sesi ini.
+      
+      Pastikan untuk mengikuti praktik terbaik keamanan dan manajemen sesi yang disarankan oleh Django dalam setiap langkah di atas. Selain itu, lakukan pengujian menyeluruh untuk memastikan bahwa aplikasi Anda berfungsi dengan baik.
+
 
 
 
