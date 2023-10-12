@@ -279,12 +279,127 @@ autentikasi dan otorisasi adalah dua konsep yang sangat penting untuk mengelola 
 
 
 
+ ## Pertanyaan Tugas 5
 
+1. **Manfaat dan Penggunaan Selector dalam CSS:**
+    - **Element Selector (`tag`):** Selector ini digunakan untuk menargetkan elemen HTML berdasarkan tagnya. Misalnya, `p` akan menargetkan semua elemen paragraf.
+    - **Class Selector (`.class`):** Digunakan untuk menargetkan elemen berdasarkan kelas CSS. Ini memungkinkan penggunaan gaya yang sama pada beberapa elemen tanpa harus mengulangi aturan CSS.
+    - **ID Selector (`#id`):** Menargetkan elemen berdasarkan ID mereka. Diperlukan bahwa ID unik dalam halaman HTML tertentu.
+    - **Attribute Selector (`[attribute]`):** Digunakan untuk menargetkan elemen berdasarkan atribut dan nilainya, seperti `[type="text"]` untuk menargetkan input dengan tipe teks.
 
+2. **HTML5 Tags:**
+    - **`<article>`:** Menandakan konten independen yang dapat berdiri sendiri.
+    - **`<section>`:** Menandakan bagian dalam dokumen.
+    - **`<header>`:** Mengandung elemen-elemen pengantar atau navigasi untuk bagian tertentu.
+    - **`<footer>`:** Berisi informasi penutupan atau footer dokumen atau bagian.
+    - **`<nav>`:** Menyimpan tautan navigasi atau menu.
+    - **`<aside>`:** Menunjukkan konten yang terkait dengan konten yang dielilinginya, seperti sidebar.
+    - **`<figure>` dan `<figcaption>`:** Untuk menambahkan gambar dan keterangan.
+    - **`<time>`:** Menunjukkan waktu atau tanggal.
 
+3. **Perbedaan Margin dan Padding:**
+    - **Margin:** Menentukan ruang di luar elemen dan memengaruhi jarak antara elemen dan elemen lainnya.
+    - **Padding:** Menentukan ruang di dalam elemen dan memengaruhi jarak antara batas elemen dan kontennya sendiri.
+
+4. **Perbedaan Tailwind dan Bootstrap:**
+    - **Tailwind CSS:** Memiliki pendekatan utility-first, di mana kelas-kelas kecil digunakan untuk membangun tata letak dan desain. Tidak ada komponen bawaan.
+    - **Bootstrap:** Menyediakan kumpulan komponen yang sudah dibangun dan dapat disesuaikan dengan menggunakan kelas-kelas mereka. Pendekatan yang lebih mendekati konsep komponen.
+
+    **Kapan Menggunakan Bootstrap atau Tailwind:**
+    - **Bootstrap:** Cocok untuk proyek yang memerlukan komponen yang telah dirancang dengan baik dan cepat diimplementasikan. Cocok untuk pengembang yang ingin menghemat waktu dalam mengembangkan antarmuka pengguna.
+    - **Tailwind:** Cocok untuk pengembang yang ingin lebih banyak kendali atas desain dan tidak keberatan menulis lebih banyak kode HTML dan CSS. Fleksibel dan cocok untuk proyek dengan desain khusus.
+
+5. **Langkah-langkah Implementasi:**
    
+    - **Element Selector dan Class Selector:**
+        1. Identifikasi elemen-elemen yang perlu diberi gaya.
+        2. Tulis aturan CSS menggunakan Element Selector dan Class Selector.
+        3. Terapkan aturan CSS pada elemen-elemen di halaman HTML Anda.
+
+    - **ID Selector:**
+        1. Identifikasi elemen yang unik dan memerlukan gaya khusus.
+        2. Tulis aturan CSS menggunakan ID Selector.
+        3. Terapkan aturan CSS pada elemen dengan ID tersebut.
+
+    - **Attribute Selector:**
+        1. Tentukan elemen yang ingin Anda targetkan berdasarkan atributnya.
+        2. Tulis aturan CSS menggunakan Attribute Selector.
+        3. Terapkan aturan CSS pada elemen dengan atribut tersebut.
+
+    - **HTML5 Tags:**
+        1. Tentukan di mana tag HTML5 dapat meningkatkan struktur dan makna.
+        2. Gantilah tag HTML yang ada atau tambahkan tag baru sesuai kebutuhan.
+        3. Terapkan CSS atau gaya sesuai kebutuhan pada tag HTML5 tersebut.
+
+    - **Margin dan Padding:**
+        1. Pahami elemen-elemen yang memerlukan ruang tambahan di dalam atau di sekitarnya.
+        2. Gunakan aturan CSS untuk menentukan Margin dan Padding yang sesuai.
+        3. Terapkan aturan CSS pada elemen-elemen tersebut.
+
+    - **Tailwind atau Bootstrap:**
+        1. Pilih antara Tailwind atau Bootstrap berdasarkan kebutuhan dan preferensi.
+        2. Terapkan Tailwind CSS atau Bootstrap sesuai dengan dokumentasi masing-masing.
+        3. Sesuaikan komponen atau gaya sesuai kebutuhan proyek.
+
+  ## Pertanyaan Tugas 6
 
 
-   
+  Berikut adalah jawaban untuk pertanyaan-pertanyaan tersebut pada README.md pada root folder:
 
-   
+## Tugas 3: Menggunakan Django dan AJAX
+
+   1. **Asynchronous vs. Synchronous Programming**
+
+      Asynchronous programming memungkinkan eksekusi tugas-tugas tanpa harus menunggu tugas sebelumnya selesai. Ini memungkinkan aplikasi untuk tetap responsif terhadap input pengguna dan meningkatkan kinerja. Synchronous programming, sebaliknya, memproses tugas satu per satu dan menunggu setiap tugas selesai sebelum melanjutkan ke tugas berikutnya.
+
+   2. **Paradigma Event-Driven Programming dalam JavaScript dan AJAX**
+
+      Paradigma event-driven programming berfokus pada penggunaan event dan event listener. Dalam konteks JavaScript dan AJAX, ini berarti program merespons kejadian (event) tertentu, seperti klik tombol atau permintaan AJAX selesai. Sebagai contoh pada tugas ini, event-driven programming dapat dilihat dalam penanganan klik tombol "Add Product by AJAX".
+
+   3. **Penerapan Asynchronous Programming pada AJAX**
+
+      Pada AJAX, asynchronous programming memungkinkan permintaan data dari server dilakukan tanpa harus menunggu tanggapan dari server. Dengan ini, halaman web tetap responsif tanpa harus me-refresh seluruh halaman. Implementasi ini terlihat dalam fungsi `addProduct` yang menggunakan `fetch` API untuk mengirim permintaan tanpa menghentikan eksekusi script.
+
+   4. **Fetch API vs. jQuery pada Penerapan AJAX**
+
+      **Fetch API:**
+      - **Kelebihan:**
+        - Terintegrasi dengan JavaScript modern.
+        - Lebih ringan dan cepat dibandingkan dengan library eksternal seperti jQuery.
+        - Mendukung Promises untuk penanganan asynchronous yang lebih baik.
+      - **Kekurangan:**
+        - Memerlukan sedikit lebih banyak kode dibandingkan dengan jQuery.
+      
+      **jQuery:**
+      - **Kelebihan:**
+        - Mudah digunakan dan mempersingkat kode.
+        - Kompatibilitas dengan berbagai browser.
+        - Sintaks yang sederhana dan mudah dipahami.
+      - **Kekurangan:**
+        - Tambahan berat karena mungkin memuat fitur yang tidak diperlukan.
+        - Kurang mendukung konsep Promises.
+
+**Pendapat Pribadi:**
+      Pilihan antara Fetch API dan jQuery tergantung pada kebutuhan dan preferensi. Untuk proyek kecil atau jika fokus pada kecepatan dan performa, menggunakan Fetch API bisa menjadi pilihan yang lebih baik. Namun, jika proyek membutuhkan kesederhanaan dan dukungan lintas browser yang kuat, jQuery masih merupakan pilihan yang valid.
+
+5. **Implementasi Checklist secara Step-by-Step**
+      
+      1. **Analisis Kebutuhan Proyek:**
+         - Tentukan kebutuhan desain dan fungsionalitas.
+      
+      2. **Pemilihan CSS Selector:**
+         - Identifikasi elemen-elemen yang memerlukan gaya umum.
+      
+      3. **Penggunaan HTML5 Tags:**
+         - Sesuaikan struktur HTML dengan tag HTML5.
+      
+      4. **Memahami Margin dan Padding:**
+         - Gunakan Margin dan Padding sesuai kebutuhan.
+      
+      5. **Memahami Perbedaan Tailwind dan Bootstrap:**
+         - Pilih antara Tailwind atau Bootstrap berdasarkan kebutuhan dan preferensi.
+      
+      6. **Langkah-langkah Implementasi:**
+         - Implementasikan aturan CSS dan struktur HTML sesuai dengan pilihan desain dan framework.
+
+
