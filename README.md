@@ -340,13 +340,10 @@ autentikasi dan otorisasi adalah dua konsep yang sangat penting untuk mengelola 
         1. Pilih antara Tailwind atau Bootstrap berdasarkan kebutuhan dan preferensi.
         2. Terapkan Tailwind CSS atau Bootstrap sesuai dengan dokumentasi masing-masing.
         3. Sesuaikan komponen atau gaya sesuai kebutuhan proyek.
+   
 
   ## Pertanyaan Tugas 6
 
-
-  Berikut adalah jawaban untuk pertanyaan-pertanyaan tersebut pada README.md pada root folder:
-
-## Tugas 3: Menggunakan Django dan AJAX
 
    1. **Asynchronous vs. Synchronous Programming**
 
