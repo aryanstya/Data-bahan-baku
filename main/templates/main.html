@@ -1,8 +1,7 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
-<body style="background-color: #232323 ; color: #fff;">
+<body style="background-color: #232323; color: #fff;">
     <h1>Data Bahan Baku</h1>
 
     <h5>Name:</h5>
@@ -11,59 +10,156 @@
     <h5>Class:</h5>
     <p>{{class}}</p>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>     </th>
-        <th>Amount</th>
-        <th>       </th>
-        <th>Description</th>
-    </tr>
+    <table id="product_table"></table>
+    <h7>Sesi terakhir login: {{ last_login }}</h7>
 
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+    <br />
 
-    {% for product in products %}
-        <tr>
-            <td>{{product.name}}</td>
-            <th>     </th>
-            <td>{{product.amount}}</td>
-            <th>     </th>
-            <td>{{product.description}}</td>
-            <td>
-                <a href="{% url 'main:edit_product' product.pk %}">
-                    <button>
-                        Edit
-                    </button>
-                </a>
-                <a href="{% url 'main:delete_product' product.pk %}">
-                      <button>
-                          Delete
-                      </button>
-                  </a>
-            </td>
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Add New Product
+        </button>
+    </a>
 
-        </tr>
-    {% endfor %}
-    
-</table>
+    <a href="{% url 'main:logout' %}">
+        <button>
+            Logout
+        </button>
+    </a>
 
-<h7>Sesi terakhir login: {{ last_login }}</h7>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Amount" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="Amount" name="amount"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<br />
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Product by AJAX</button>
 
-<a href="{% url 'main:create_product' %}">
-    <button>
-        Add New Product
-    </button>
-</a>
+</body>
+<script>
+    async function getProducts() {
+        const res = await fetch("{% url 'main:get_product_json' %}");
+        return res.json();
+    }
 
+    async function refreshProducts() {
+        document.getElementById("product_table").innerHTML = "";
+        const products = await getProducts();
+        let htmlString = `<tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Description</th>
+        </tr>`;
+        products.forEach((item) => {
+            htmlString += `\n<tr>
+                <td>${item.fields.name}</td>
+                <td>${item.fields.amount}</td>
+                <td>${item.fields.description}</td>
+                <td>
+                    <a href= "edit/${item.pk}">
+                        <button type="submit">
+                            Edit
+                        </button>
+                    </a>
+                </td>
+                <td>
+                    <a href="delete/${item.pk}">
+                        <button type="submit">
+                            Delete
+                        </button>
+                    </a>
+                </td>
+            </tr>`;
+        });
 
-<a href="{% url 'main:logout' %}">
-    <button>
-        Logout
-    </button>
-</a>
+        document.getElementById("product_table").innerHTML = htmlString;
+    }
 
+    async function addProduct() {
+        event.preventDefault();
 
+        const formData = new FormData(document.querySelector('#form'));
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+        const response = await fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: formData
+        });
+
+        if (response.ok) {
+            const newProduct = await response.json();
+            appendProductToTable(newProduct);
+            // Hide the modal
+            $('#exampleModal').modal('hide');
+            document.getElementById("form").reset();
+        } else {
+            console.error('Failed to add product.');
+        }
+    }
+
+    function appendProductToTable(product) {
+        const table = document.getElementById("product_table");
+
+        const newRow = table.insertRow(-1);
+        const cell1 = newRow.insertCell(0);
+        const cell2 = newRow.insertCell(1);
+        const cell3 = newRow.insertCell(2);
+
+        cell1.innerHTML = product.name;
+        cell2.innerHTML = product.amount;
+        cell3.innerHTML = product.description;
+
+    // Tombol Edit
+    const editCell = newRow.insertCell(3);
+    editCell.innerHTML = `<a href= "edit/${item.pk}">
+        <button type="submit">
+            Edit
+        </button>
+    </a>`;
+
+    // Tombol Delete
+    const deleteCell = newRow.insertCell(4);
+    deleteCell.innerHTML = `<a href="delete/${product.pk}">
+        <button type="submit">
+            Delete
+        </button>
+    </a>`;
+}
+    // Event handler to reset form when the modal is hidden
+    $('#exampleModal').on('hidden.bs.modal', function () {
+        document.getElementById("form").reset();
+    });
+
+    refreshProducts();
+
+    document.getElementById("button_add").onclick = addProduct;
+
+</script>
 
 {% endblock content %}
